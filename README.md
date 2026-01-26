@@ -16,4 +16,6 @@ Fully responsive design for desktop, tablet, and mobile
 
 HTML, CSS, JavaScript, and optional localStorage for data persistence
 
-Purpose: To provide a user-friendly, interactive way to monitor personal finances while maintaining a focused and intuitive design.
+# Purpose: 
+
+To provide a user-friendly, interactive way to monitor personal finances while maintaining a focused and intuitive design.
