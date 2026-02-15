@@ -1,48 +1,60 @@
+/* Base Layout */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.5;
-    margin: 2rem;
-    background-color: #fafafa;
-  }
-  
-  main {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  ul {
-    padding-left: 0;
-    list-style: none;
-  }
-  
-  li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  input, button {
-    display: block;
-    width: 30%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  
-  a {
-    display: inline-block;
-    margin-top: 1rem;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input, select, button {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.expense-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#clear {
+  display: block;
+  width: 30%;
+  margin-top: 15px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  form {
+    flex-direction: column;
   }
 
-  #clear {
-    margin-top: 1rem;
+  .expense-list {
+    flex-direction: column;
+    gap: 4px;
   }
-  
-  #expense-form {
-    margin-bottom: 2rem;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
   }
-  
-  #back-link {
-    display: block;
+
+  h1 {
+    font-size: 24px;
   }
+
+  input, select, button {
+    font-size: 14px;
+  }
+}
   
+ 
   
