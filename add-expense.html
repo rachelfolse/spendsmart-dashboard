@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Add Expense</title>
 <link rel="stylesheet" href="css/styles.css">
 <script defer src="js/app.js"></script>
@@ -11,10 +11,18 @@
 <h1>Add Expense</h1>
 
 <form id="expense-form">
-    <input type="text" id="name" placeholder="Expense name" required>
     <input type="number" id="amount" placeholder="Amount" required>
-    <button type="submit">Save</button> 
-</form>
+    <input type="text" id="description" placeholder="Description">
+    
+    <select id="category">
+      <option value="Food">Food</option>
+      <option value="Transport">Transport</option>
+      <option value="Bills">Bills</option>
+      <option value="Entertainment">Entertainment</option>
+    </select>
+  
+    <button type="submit">Add</button>
+  </form>
 
 <a href="index.html" id="back-link">Back to Dashboard</a> 
 
