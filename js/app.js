@@ -1,4 +1,23 @@
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+const supabaseUrl = "https://gouvhqakxuofilgykoji.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdvdXZocWFreHVvZmlsZ3lrb2ppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyOTM0MDksImV4cCI6MjA4Nzg2OTQwOX0.Xw7O7YvDzqRTNxyy0d87v1PGhDld6rqObh7lVz81zpQ";
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+let expenses = [];
+
+async function loadExpenses() {
+    const { data, error } = await supabaseClient
+      .from("expenses")
+      .select("*")
+      .order("created_at", { ascending: false });
+  
+    if (error) {
+      console.error(error);
+      return;
+    }
+  
+    expenses = data;
+    renderExpenses();
+  }
 
 function renderExpenses() {
     const list = document.getElementById("expense-list");
@@ -23,35 +42,46 @@ function renderExpenses() {
   
       li.innerHTML = `
         <span>${expense.description || "No description"} - $${expense.amount} (${expense.category})</span>
-        <button onclick="deleteExpense(${index})">Delete</button>
+        <button onclick="deleteExpense('${expense.id}')">Delete</button>
       `;
   
       list.appendChild(li);
     });
   
     totalDisplay.textContent = total.toFixed(2);
-    localStorage.setItem("expenses", JSON.stringify(expenses));
   }  
 
-function deleteExpense(index) {
-  expenses.splice(index, 1);
-  renderExpenses();
-}
+  async function deleteExpense(id) {
+    const { error } = await supabaseClient
+      .from("expenses")
+      .delete()
+      .eq("id", id);
+  
+    if (error) {
+      console.error(error);
+      return;
+    }
+  
+    loadExpenses();
+  }
 
 const clearButton = document.getElementById("clear");
 
 if (clearButton) {
-  clearButton.addEventListener("click", function() {
-    expenses = [];
-    localStorage.removeItem("expenses");
-    renderExpenses();
+  clearButton.addEventListener("click", async function() {
+    await supabaseClient
+  .from("expenses")
+  .delete()
+  .neq("id", 0);
+
+loadExpenses();
   });
 }
 
 const form = document.getElementById("expense-form");
 
 if (form) {
-  form.addEventListener("submit", function(e) {
+    form.addEventListener("submit", async function(e)  {
     e.preventDefault();
 
     const amount = parseFloat(document.getElementById("amount").value);
@@ -63,13 +93,20 @@ if (form) {
       return;
     }
 
-    expenses.push({ amount, description, category });
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-    window.location.href = "index.html";  
+    const { error } = await supabaseClient
+    .from("expenses")
+    .insert([{ amount, description, category }]);
+  
+  if (error) {
+    console.error(error);
+    return;
+  }
+  
+  window.location.href = "index.html";
     
 });
 }
 
-renderExpenses();
+loadExpenses();
 
   
