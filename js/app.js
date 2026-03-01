@@ -68,13 +68,21 @@ function renderExpenses() {
 const clearButton = document.getElementById("clear");
 
 if (clearButton) {
-  clearButton.addEventListener("click", async function() {
-    await supabaseClient
-  .from("expenses")
-  .delete()
-  .neq("id", 0);
+  clearButton.addEventListener("click", async () => {
 
-loadExpenses();
+    console.log("Clear clicked");  // 👈 add here for debugging
+
+    const { error } = await supabaseClient
+      .from("expenses")
+      .delete()
+      .not("id", "is", null);   // 👈 safer delete-all
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    loadExpenses();  // reload after successful delete
   });
 }
 
