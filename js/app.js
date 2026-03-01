@@ -70,19 +70,19 @@ const clearButton = document.getElementById("clear");
 if (clearButton) {
   clearButton.addEventListener("click", async () => {
 
-    console.log("Clear clicked");  // 👈 add here for debugging
+    console.log("Clear clicked");  
 
     const { error } = await supabaseClient
       .from("expenses")
       .delete()
-      .not("id", "is", null);   // 👈 safer delete-all
+      .not("id", "is", null);   
 
     if (error) {
       console.error(error);
       return;
     }
 
-    loadExpenses();  // reload after successful delete
+    loadExpenses();  
   });
 }
 
