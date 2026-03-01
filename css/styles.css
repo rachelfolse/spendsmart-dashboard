@@ -1,59 +1,157 @@
-/* Base Layout */
-body {
-  font-family: Arial, sans-serif;
+/* =========================
+   1. Base Styles
+========================= */
+* {
+  box-sizing: border-box;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-form {
+body {
+  background-color: #C49A6C99;;
   display: flex;
+  flex-direction: column;
+
+}
+
+/* =========================
+   2. Layout Container
+========================= */
+.app {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  margin: 60px auto;
+  border: 1px solid black;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  justify-content: center;
+}
+
+.dashboard__summary,
+.dashboard__expenses {
+  margin-bottom: 25px;
+}
+
+.dashboard__actions {
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
+}
+
+.dashboard__header {
+
+background-color: #00A651B3; /* Green background */
+color: black;              /* Text color */
+text-align: center;        /* Center text */       
+padding: 40px 10px; /* Space inside */
+flex: 1 1 100%;
+
+}
+
+/* =========================
+   3. Typography
+========================= */
+h1 {
+  font-family: "Arial Black", Arial, sans-serif;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-input, select, button {
-  padding: 8px;
-  font-size: 16px;
+h2 {
+  margin-bottom: 15px;
 }
 
+.total {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   4. Expense List
+========================= */
 .expense-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.expense-item {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #ccc;
+  align-items: center;
+  background: #f8f9fc;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-#clear {
+.expense-item span {
+  font-weight: 500;
+}
+
+/* =========================
+   5. Buttons
+========================= */
+.button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.button--primary {
+  background-color: #00A651B3;
+  color: black;
+}
+
+.button--primary:hover {
+  background-color: #00A651;
+}
+
+.button--danger {
+  background-color: #8B3A3A;
+  color: white;
+}
+
+.button--danger:hover {
+  background-color: #c0392b;
+}
+
+.button--secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+ a {
+  text-decoration: none;
+ }
+/* =========================
+   6. Form Styles
+========================= */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
   display: block;
-  width: 30%;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+form {
   margin-top: 15px;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  form {
-    flex-direction: column;
-  }
-
-  .expense-list {
-    flex-direction: column;
-    gap: 4px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-
-  input, select, button {
-    font-size: 14px;
-  }
 }
   
  

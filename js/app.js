@@ -37,12 +37,12 @@ function renderExpenses() {
     expenses.forEach((expense, index) => {
       total += expense.amount;
   
-      const li = document.createElement("div");
+      const li = document.createElement("li");
       li.classList.add("expense-item");
   
       li.innerHTML = `
         <span>${expense.description || "No description"} - $${expense.amount} (${expense.category})</span>
-        <button onclick="deleteExpense('${expense.id}')">Delete</button>
+        <button class="button button--danger" onclick="deleteExpense('${expense.id}')">Delete</button>
       `;
   
       list.appendChild(li);
@@ -65,18 +65,26 @@ function renderExpenses() {
     loadExpenses();
   }
 
-const clearButton = document.getElementById("clear");
+  const clearButton = document.getElementById("clear");
 
-if (clearButton) {
-  clearButton.addEventListener("click", async function() {
-    await supabaseClient
-  .from("expenses")
-  .delete()
-  .neq("id", 0);
-
-loadExpenses();
-  });
-}
+  if (clearButton) {
+    clearButton.addEventListener("click", async () => {
+  
+      console.log("Clear clicked");  
+  
+      const { error } = await supabaseClient
+        .from("expenses")
+        .delete()
+        .not("id", "is", null);  
+  
+      if (error) {
+        console.error(error);
+        return;
+      }
+  
+      loadExpenses();  
+    });
+  }
 
 const form = document.getElementById("expense-form");
 
