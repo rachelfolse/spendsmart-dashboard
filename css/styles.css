@@ -9,9 +9,7 @@
 }
 
 body {
-  background-color: #C49A6C99;;
-  display: flex;
-  flex-direction: column;
+  background-color: #C49A6C99;
 
 }
 
@@ -21,13 +19,14 @@ body {
 .app {
   background: white;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   padding: 30px;
   margin: 60px auto;
   border: 1px solid black;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   justify-content: center;
+  min-height: 70vh;
 }
 
 .dashboard__summary,
@@ -37,18 +36,28 @@ body {
 
 .dashboard__actions {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 10px;
+  font-size: 20px;
 }
 
 .dashboard__header {
 
 background-color: #00A651B3; /* Green background */
-color: black;              /* Text color */
-text-align: center;        /* Center text */       
+color: black;              /* Text color */     
 padding: 40px 10px; /* Space inside */
-flex: 1 1 100%;
 
+position: relative;        
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  position: absolute;       
+  left: 20px;                
+  height: 400px;
+  margin-top: 225px;
 }
 
 /* =========================
@@ -62,6 +71,7 @@ h1 {
 
 h2 {
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .total {
@@ -77,6 +87,7 @@ h2 {
 .expense-list {
   list-style: none;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .expense-item {
@@ -89,6 +100,10 @@ h2 {
   margin-bottom: 10px;
 }
 
+.total {
+  text-align: center;
+}
+
 .expense-item span {
   font-weight: 500;
 }
@@ -97,17 +112,19 @@ h2 {
    5. Buttons
 ========================= */
 .button {
-  padding: 8px 14px;
+  padding: 20px 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 500;
   transition: 0.2s ease;
+  font-size: 20px;
 }
 
 .button--primary {
   background-color: #00A651B3;
   color: black;
+  text-align: center;
 }
 
 .button--primary:hover {
@@ -117,6 +134,7 @@ h2 {
 .button--danger {
   background-color: #8B3A3A;
   color: white;
+  font-size: 15px;
 }
 
 .button--danger:hover {
@@ -134,25 +152,104 @@ h2 {
    6. Form Styles
 ========================= */
 .form-group {
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;    
+  margin-bottom: 40px;
+}
+
+
+.form-group label {        
+  font-weight: 500;
+  width: 120px;
+}
+
+.form-group input,
+.form-group select {
+  flex: 1;                
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  color: #6b7280;
+  pointer-events: none;
 }
 
 label {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
+  font-size: 20px;
 }
 
 input, select {
   width: 100%;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #E4E4E4;
   border: 1px solid #ccc;
+  font-size: 1.1rem;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #2ecc71;  
 }
 
 form {
   margin-top: 15px;
 }
-  
- 
-  
+
+
+  /* =========================
+   Mobile Adjustments
+========================= */
+@media (max-width: 600px) {
+
+  .app {
+    max-width: 90%;        
+    padding: 20px;         
+    margin: 40px auto;     
+  }
+
+}
+
+@media (max-width: 700px) {
+
+  .logo {
+    height: 200px;
+    left: 15px;
+    margin-bottom: 125px;
+  }
+  .dashboard__header {
+    font-size: 12px;
+  }
+}
+
+/* =========================
+   Tablet Adjustments
+========================= */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .app {
+    max-width: 500px;  
+    padding: 25px;     
+    margin: 60px auto;
+  }
+
+}
