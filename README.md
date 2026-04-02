@@ -14,7 +14,7 @@ Fully responsive design for desktop, tablet, and mobile
 
 # Technologies: 
 
-HTML, CSS, JavaScript, and optional localStorage for data persistence
+HTML, CSS, JavaScript, and Supabase for data persistence
 
 # Purpose: 
 
